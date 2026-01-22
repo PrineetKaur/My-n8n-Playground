@@ -5,7 +5,7 @@ This project is the first hands-on workflow in this playground.
 It introduces the most basic n8n building blocks:
 
 - A **trigger** to start the workflow
-- A **Set node** to create and structure sample data
+- A **set node** to create and structure sample data
 - A **final output step** to confirm the workflow executed successfully
 
 The goal is not to build a useful automation yet, but to build confidence
