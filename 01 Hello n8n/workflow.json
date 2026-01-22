@@ -1,0 +1,89 @@
+{
+  "name": "01 - Hello n8n (Manual Trigger + Set Data)",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "b1f4c1d1-6d15-4c57-9d61-8aebf78c42a1",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        500,
+        260
+      ]
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "name",
+              "value": "Prineet"
+            },
+            {
+              "name": "role",
+              "value": "Technical Product Manager (Learning)"
+            },
+            {
+              "name": "learning_goal",
+              "value": "Understand workflow automation using n8n"
+            }
+          ]
+        }
+      },
+      "id": "7d02bb67-9ae8-4d14-8d05-54c61c6d6c88",
+      "name": "Set Sample Data",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        740,
+        260
+      ]
+    },
+    {
+      "parameters": {
+        "functionCode": "const now = new Date().toISOString();\n\nreturn items.map(item => {\n  item.json.timestamp = now;\n  item.json.message = \"Hello n8n! Workflow executed successfully.\";\n  return item;\n});"
+      },
+      "id": "d7098a7a-97f5-4f5a-9bc5-6c9c9d1a8b5b",
+      "name": "Add Timestamp + Message",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 2,
+      "position": [
+        980,
+        260
+      ]
+    }
+  ],
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "Set Sample Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Sample Data": {
+      "main": [
+        [
+          {
+            "node": "Add Timestamp + Message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "1",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "id": "01-hello-n8n-workflow"
+}
